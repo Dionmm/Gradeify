@@ -1,0 +1,49 @@
+﻿<Page x:Class="Coursework.DisplayStudents"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="DisplayStudents">
+    <Page.Resources>
+        <local:StudentList x:Key="passedStudents"/>
+        <local:StudentList x:Key="failedStudents"/>
+    </Page.Resources>
+
+    <Grid x:Name="studentGrid" DataContext="{StaticResource myStudentList}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="Header" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="All Students" Foreground="#1c2f2f" VerticalAlignment="bottom" HorizontalAlignment="left" FontFamily="veranda" FontSize="15" FontWeight="Bold"/>
+        <ListBox x:Name="studentListBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="10" ItemsSource="{Binding}" SelectionChanged="editSelectionChanged"/>
+        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" DataContext="{Binding ElementName=studentListBox, Path=SelectedItem}" Margin="10,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label x:Name="studentName" Content="{Binding Path=FullName}" Grid.Row="0" Grid.Column="0" FontWeight="SemiBold"/>
+            <Label x:Name="studentMatric" Content="{Binding Path=Matriculation}" Grid.Row="0" Grid.Column="1" FontWeight="SemiBold"/>
+            <Label x:Name="studentCom1" Content="{Binding Path=Component1}" Grid.Row="1" Grid.Column="1"/>
+            <Label x:Name="studentCom2" Content="{Binding Path=Component2}" Grid.Row="2" Grid.Column="1"/>
+            <Label x:Name="studentCom3" Content="{Binding Path=Component3}" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="Component 1:" Grid.Row="1" Grid.Column="0"/>
+            <Label Content="Component 2:" Grid.Row="2" Grid.Column="0"/>
+            <Label Content="Component 3:" Grid.Row="3" Grid.Column="0"/>
+        </Grid>
+    </Grid>
+</Page>
